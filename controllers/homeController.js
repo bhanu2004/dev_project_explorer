@@ -19,7 +19,7 @@ exports.getAll = catchAsync(async (req, res) => {
     if(!data) return res.NotFound({}, "No data found");
     const projectId = data.projectId;
     const [links, project] = await Promise.all([
-        Link.find({ projectId, isDeleted: false }),
+        Link.find({ projectId, isDeleted: false }).sort({ url_type: 1 }),
         Project.findById(projectId)
     ]);
     return res.Ok({links,project}, "Successfully fetched data!", 1);
