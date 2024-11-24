@@ -43,7 +43,7 @@ exports.getCred = catchAsync(async (req, res) => {
 exports.searchItem = catchAsync(async (req, res) => {
 
     let {name} = req.query;
-    if(!name) return res.BadRequest({}, "Invalid request");
+    // if(!name) return res.BadRequest({}, "Invalid request");
     let condition = { isDeleted: false };
     condition.name =  { $regex: name, $options: "i" };        // Case-insensitive regex search on 'name'
     const data = await Project.find(condition);
